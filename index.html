@@ -3,7 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Teleprompter de Áudio</title>
+<title>Vox Vértice</title>
+<meta name="description" content="Vox Vértice, o teleprompter de áudio do Método Vértice: seu roteiro lido no seu ouvido enquanto você grava.">
+<meta name="theme-color" content="#151413">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Vox Vértice">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -136,7 +145,8 @@ dialog::backdrop{background:rgba(21,20,19,.5)}
 /* Abas Gravar / Feed */
 @media (max-width:560px){
   .top{flex-wrap:nowrap;padding:12px 16px;padding-right:68px}
-  .top .brand,#howTop{display:none}
+  .top .brand{display:none}
+  #howTop{padding:6px 10px;font-size:12px}
   .top .row{order:-1}
   body:not(.has-side) .gear{top:10px;bottom:auto;right:14px;width:42px;height:42px;box-shadow:none}
 }
@@ -205,6 +215,52 @@ dialog::backdrop{background:rgba(21,20,19,.5)}
 .btn.small{padding:8px 14px;font-size:13px}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#F7F2EA;padding:10px 16px;border-radius:999px;font-size:14px;z-index:10}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+
+.band h1.vox{font-style:normal;font-size:clamp(54px,9vw,104px);line-height:.92;max-width:none;letter-spacing:-.01em;margin:0 0 16px}
+.band h1.vox span{font-family:var(--body);font-weight:700;letter-spacing:-.04em}
+.band h1.vox em{font-family:var(--display);font-style:italic;font-weight:400;color:var(--gold-light)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.btn.gold{background:linear-gradient(135deg,#D9BF8F,#A8854F);color:#1C140C;display:inline-flex;align-items:center;gap:8px;padding:15px 24px;font-size:16px}
+.btn.gold svg{width:18px;height:18px}
+.btn.line{background:transparent;color:#F7F2EA;border:1px solid rgba(247,242,234,.35);padding:15px 22px}
+.helpcard{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
+.helpcard b{display:block;font-size:16px}
+.helpcard span{display:block;color:var(--muted);font-size:14px;max-width:52ch}
+a.btn{text-decoration:none;display:inline-flex;align-items:center}
+@media (max-width:600px){.hero-actions .btn{flex:1 1 100%;justify-content:center}}
+
+.vbar{position:relative;overflow:hidden;border-radius:22px;background:var(--ink);color:#F7F2EA;display:grid;grid-template-columns:1fr 180px;align-items:stretch}
+.vbar > div:first-child{padding:24px 26px}
+.vbar .tag{margin-bottom:8px}
+.vbar h1.vox{font-size:clamp(40px,6vw,60px);line-height:.95;margin:0 0 10px;font-style:normal;font-weight:400}
+.vbar h1.vox span{font-family:var(--body);font-weight:700;letter-spacing:-.04em}
+.vbar h1.vox em{font-family:var(--display);font-style:italic;color:var(--gold-light)}
+.vsub{margin:0;font-size:14px;opacity:.85;max-width:44ch;line-height:1.5}
+.vpic{background:url("foto.jpg") center 18%/cover no-repeat;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 45%);mask-image:linear-gradient(to right,transparent 0%,#000 45%)}
+@media (max-width:600px){.vbar{grid-template-columns:1fr 110px}.vbar > div:first-child{padding:18px 18px 18px 20px}.vsub{font-size:13px}}
+.side{display:none!important}
+body.has-side{padding-left:0!important;padding-bottom:0!important}
+
+#editMode textarea{min-height:clamp(200px,32vh,340px)}
+#editMode > .row.end{position:sticky;bottom:12px;z-index:4;background:var(--surface);border-radius:999px;padding:6px 6px 6px 16px;box-shadow:0 10px 24px -14px rgba(21,20,19,.45)}
+#t-roteiro{display:none}
+
+.tour{position:fixed;inset:0;z-index:100;pointer-events:none}
+.tour[hidden]{display:none}
+.tour .shield{position:absolute;inset:0;pointer-events:auto}
+.tour .spot{position:fixed;border-radius:16px;box-shadow:0 0 0 9999px rgba(21,20,19,.72);transition:all .35s ease;pointer-events:none;outline:2px solid var(--gold-light);outline-offset:3px}
+.tour .spot.none{width:0!important;height:0!important;left:50%!important;top:50%!important;outline:0}
+.tour .tip{position:fixed;width:min(320px,calc(100vw - 32px));background:var(--surface);color:var(--ink);border-radius:18px;padding:20px 20px 16px;box-shadow:0 24px 50px -16px rgba(0,0,0,.55);pointer-events:auto;transition:top .35s ease,left .35s ease}
+.tour .tip .k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.tour .tip h4{font-family:var(--display);font-style:italic;font-weight:400;font-size:26px;line-height:1.1;margin:6px 0 8px}
+.tour .tip p{margin:0;font-size:14.5px;line-height:1.5;color:var(--muted)}
+.tour .tip .nav{display:flex;align-items:center;gap:8px;margin-top:16px}
+.tour .dots{display:flex;gap:5px;margin-right:auto}
+.tour .dots i{width:6px;height:6px;border-radius:99px;background:var(--line);transition:width .3s,background .3s}
+.tour .dots i.on{width:18px;background:var(--gold)}
+.tour .skip{background:none;border:0;color:var(--muted);font-size:13px;cursor:pointer;padding:8px}
+.tour .tip .btn{padding:10px 18px;font-size:14px}
+@media (prefers-reduced-motion: reduce){.tour .spot,.tour .tip{transition:none}}
 </style>
 </head>
 <body>
@@ -217,39 +273,44 @@ dialog::backdrop{background:rgba(21,20,19,.5)}
     <button type="button" class="nav-i" id="howBtn" ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14"/><path d="M12 17h.01"/></svg><span>Ajuda</span></button>
 </nav>
 <header class="top">
-  <div class="brand" aria-label="Teleprompter de áudio"><small>TELEPROMPTER</small><b>DE ÁUDIO</b></div>
+  <div class="brand" aria-label="Vox Vértice"><small>MÉTODO VÉRTICE</small><b>VOX</b></div>
   <nav class="tabs" id="tabs" aria-label="Áreas" hidden><button type="button" data-v="app">Gravar</button><button type="button" data-v="feed">Feed</button></nav>
-  <div class="row"><button class="chip" id="howTop" type="button" hidden>Veja como gravar</button><button class="chip" id="backBtn" type="button" hidden>← Início</button></div>
+  <div class="row"><button class="chip" id="howTop" type="button">Como usar</button><button class="chip" id="backBtn" type="button" hidden>← Início</button></div>
 
 </header>
 
 <p class="note" id="unsupported" style="margin:16px" hidden>Este navegador não tem leitura em voz. Abra pelo Chrome, Safari ou Edge atualizados.</p>
 
 <!-- Tela 1: configuração inicial -->
-<div class="wrap" id="setupView">
-  <section class="band">
-    <div class="txt">
-      <p class="tag">Bem-vinda</p>
-      <h1>Planeje, grave e publique.</h1>
-      <p>Pelo menu, planeje seu feed, escreva o roteiro e grave ouvindo cada frase no fone.</p>
-    </div>
-    <div class="pic" role="img" aria-label="Retrato da Vanessa"></div>
-  </section>
+<div class="wrap" id="setupView" hidden>
+
   <section class="card" aria-labelledby="t-setup" id="setupCard">
     <p class="eyebrow">Ajustes de voz</p>
     <h2 id="t-setup">Sua voz de leitura.</h2>
     <div id="settingsHome"></div>
-    <p class="hint">Os ajustes ficam salvos automaticamente.</p>
+    <p class="hint">Os ajustes ficam salvos automaticamente neste aparelho.</p>
+  </section>
+  <section class="card helpcard" aria-label="Ajuda">
+    <div><b>Primeira vez aqui?</b><span>Veja em 1 minuto como gravar com a voz no fone e como salvar o Vox na tela inicial do celular.</span></div>
+    
   </section>
 </div>
 
 <!-- Tela 2: roteiro e play -->
 <div class="wrap narrow" id="appView" hidden>
+  <section class="vbar" aria-label="Vox Vértice">
+    <div>
+      <p class="tag">Método Vértice</p>
+      <h1 class="vox"><span>Vox</span> <em>Vértice</em></h1>
+      <p class="vsub">Cole o roteiro, coloque o fone e dê play. A voz lê frase por frase para você gravar sem decorar.</p>
+    </div>
+    <div class="vpic" role="img" aria-label="Vanessa Ferreira"></div>
+  </section>
   <section class="card" aria-labelledby="t-roteiro">
     <div id="editMode" style="display:flex;flex-direction:column;gap:18px">
       <p class="eyebrow">Seu roteiro</p>
-      <h2 id="t-roteiro">Cole o texto do vídeo.</h2>
-      <textarea id="txt" aria-label="Roteiro" placeholder="Cole seu roteiro aqui..."></textarea>
+      <h2 id="t-roteiro">Cole seu roteiro aqui.</h2>
+      <textarea id="txt" aria-label="Roteiro" placeholder="Cole ou escreva seu roteiro aqui..."></textarea>
       <details class="marks">
         <summary>Quer organizar o roteiro em partes? (opcional)</summary>
         <div class="marklist">
@@ -423,12 +484,35 @@ dialog::backdrop{background:rgba(21,20,19,.5)}
       <li>Cole o roteiro do jeito que ele está. Se quiser, divida em partes com <code>[GANCHO]</code> ou <code>[CTA]</code> e use <code>(pausa)</code> onde quiser respirar.</li>
       <li>Abra a câmera, comece a gravar e aperte o play. Você tem uma contagem de 3 segundos para se posicionar. Depois, fale logo atrás da voz, com o seu tom.</li>
       <li>Errou? Toque na frase na lista para recomeçar dali.</li>
+      <li><b>Deixe o Vox na tela inicial:</b> no iPhone, abra no Safari, toque em Compartilhar › Adicionar à Tela de Início. No Android, abra no Chrome, toque nos três pontinhos › Adicionar à tela inicial.</li>
     </ol>
-    <div class="row end"><button class="btn dark" id="howClose" type="button">Entendi</button></div>
+    <p class="hint">Seus roteiros e seu feed ficam salvos neste aparelho e neste navegador. Para não perder nada, use sempre o mesmo celular e o mesmo navegador.</p>
+    <div class="row end"><button class="btn ghost" id="tourAgain" type="button">Rever o tour</button><a class="btn ghost" id="supportLink" href="#" target="_blank" rel="noopener" hidden>Falar com o suporte</a><button class="btn dark" id="howClose" type="button">Entendi</button></div>
   </div>
 </dialog>
 
+<div class="tour" id="tour" hidden aria-live="polite">
+  <div class="shield"></div>
+  <div class="spot" id="tSpot"></div>
+  <div class="tip" id="tTip" role="dialog" aria-modal="true" aria-labelledby="tTitle">
+    <span class="k" id="tKick"></span>
+    <h4 id="tTitle"></h4>
+    <p id="tText"></p>
+    <div class="nav">
+      <div class="dots" id="tDots"></div>
+      <button type="button" class="skip" id="tSkip">Pular</button>
+      <button type="button" class="btn ghost" id="tBack">Voltar</button>
+      <button type="button" class="btn dark" id="tNext">Próximo</button>
+    </div>
+  </div>
+</div>
 <script>
+/* ===== CONFIGURAÇÃO ===== */
+var CONFIG = {
+  whatsapp: "",   /* número do suporte com DDI e DDD, só números. Ex.: 5531999999999 */
+  whatsappMsg: "Olá! Preciso de ajuda com o Vox Vértice."
+};
+/* ========================= */
 (function(){
   var EXAMPLE = "";
   var SAMPLE = "Oi! Essa é a voz que vai ler o seu roteiro. Fale logo depois de mim, com o seu tom.";
@@ -581,7 +665,7 @@ dialog::backdrop{background:rgba(21,20,19,.5)}
   function step(i,my){
     if(my!==run) return;
     while(i<items.length && items[i].t!=="say" && items[i].t!=="pz") i++;
-    if(i>=items.length){ playing=false; setPlayIcon(false); cursor=0; highlight(-1); $("nowLabel").textContent="Fim do roteiro"; $("cur").textContent="Pronto. Toque numa frase para regravar um trecho."; return; }
+    if(i>=items.length){ playing=false; letSleep(); setPlayIcon(false); cursor=0; highlight(-1); $("nowLabel").textContent="Fim do roteiro"; $("cur").textContent="Pronto. Toque numa frase para regravar um trecho."; return; }
     cursor=i; highlight(i);
     if(items[i].t==="pz"){ setTimeout(function(){ step(i+1,my); },1200); return; }
     var u=utter(items[i].x);
@@ -589,8 +673,14 @@ dialog::backdrop{background:rgba(21,20,19,.5)}
     u.onerror=function(e){ if(my!==run || e.error==="interrupted" || e.error==="canceled") return; step(i+1,my); };
     synth.speak(u);
   }
+  /* Mantém a tela acesa enquanto a voz lê */
+  var wake=null;
+  function keepAwake(){ try{ if(navigator.wakeLock && !wake) navigator.wakeLock.request("screen").then(function(w){ wake=w; w.addEventListener("release",function(){ wake=null; }); }).catch(function(){}); }catch(e){} }
+  function letSleep(){ try{ if(wake){ wake.release(); wake=null; } }catch(e){} }
+  document.addEventListener("visibilitychange",function(){ if(document.visibilityState==="visible" && playing) keepAwake(); });
   function playFrom(i,withCount){
     if(!synth || !sayIdx.length) return;
+    keepAwake();
     run++; var my=run;
     synth.cancel(); playing=true; setPlayIcon(true);
     var n = withCount ? cfg.count : 0;
@@ -605,7 +695,7 @@ dialog::backdrop{background:rgba(21,20,19,.5)}
       setTimeout(function(){ tick(left-1); },1000);
     })(n);
   }
-  function pause(){ run++; if(synth) synth.cancel(); playing=false; setPlayIcon(false); $("cur").classList.remove("cd"); if(items[cursor]) highlight(cursor); }
+  function pause(){ run++; if(synth) synth.cancel(); playing=false; letSleep(); setPlayIcon(false); $("cur").classList.remove("cd"); if(items[cursor]) highlight(cursor); }
   function stop(){ pause(); cursor=0; if(items.length) highlight(-1); }
   function jump(dir){
     var pos=sayIdx.indexOf(cursor); if(pos<0) pos = dir>0 ? -1 : 0;
@@ -620,13 +710,7 @@ dialog::backdrop{background:rgba(21,20,19,.5)}
     if(!$("settingsModal").contains($("settings"))) $("settingsModal").appendChild($("settings"));
     updateCount();
   }
-  function showHome(){
-    stop(); closeDlg($("setDlg"));
-    $("appView").hidden=true; $("feedView").hidden=true; $("setupView").hidden=false; setNav("home");
-    $("settingsHome").appendChild($("settings"));
-    $("readMode").hidden=true; $("editMode").hidden=false;
-    window.scrollTo(0,0);
-  }
+  function showHome(){ stop(); closeDlg($("setDlg")); switchView("app"); toEdit(); }
   function toRead(){
     items=parse(txt.value); store("tp-roteiro-v2",txt.value); render();
     $("editMode").hidden=true; $("readMode").hidden=false;
@@ -781,10 +865,10 @@ dialog::backdrop{background:rgba(21,20,19,.5)}
     setNav(v); window.scrollTo(0,0);
   }
   function setNav(v){
-    var home = v==="home";
-    $("side").hidden=!home; document.body.classList.toggle("has-side",home);
-    $("backBtn").hidden=home; $("tabs").hidden=home;
-    document.querySelectorAll("#tabs button").forEach(function(b){ b.setAttribute("aria-pressed",b.dataset.v===v); }); $("howTop").hidden = v!=="app"; $("gearBtn").hidden = v!=="app"; document.querySelectorAll(".nav-i[data-v]").forEach(function(b){ if(b.dataset.v===v) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); }); }
+    var home = false;
+    $("side").hidden=true; document.body.classList.remove("has-side");
+    $("backBtn").hidden=true; $("tabs").hidden=false;
+    document.querySelectorAll("#tabs button").forEach(function(b){ b.setAttribute("aria-pressed",b.dataset.v===v); }); $("howTop").hidden = false; $("gearBtn").hidden = v!=="app"; document.querySelectorAll(".nav-i[data-v]").forEach(function(b){ if(b.dataset.v===v) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); }); }
   document.querySelectorAll(".nav-i[data-v]").forEach(function(b){ b.addEventListener("click",function(){
     if(synth && !playing) synth.cancel(); save();
     if(b.dataset.v==="home") showHome(); else showApp(b.dataset.v);
@@ -797,8 +881,8 @@ dialog::backdrop{background:rgba(21,20,19,.5)}
   document.querySelectorAll("#tabs button").forEach(function(b){ b.addEventListener("click",function(){ switchView(b.dataset.v); }); });
   $("howTop").addEventListener("click",function(){ openDlg($("how")); });
   $("gearBtn").addEventListener("click",function(){ openDlg($("setDlg")); });
-  setNav("home");
   renderProfile(); renderGrid();
+  if(CONFIG.whatsapp){ var sl=$("supportLink"); sl.href="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(CONFIG.whatsappMsg); sl.hidden=false; }
 
   /* ---------- Eventos ---------- */
   $("goBtn").addEventListener("click",toRead);
@@ -822,11 +906,59 @@ dialog::backdrop{background:rgba(21,20,19,.5)}
     if(e.code==="Space" && !$("readMode").hidden && !/TEXTAREA|INPUT|SELECT|BUTTON/.test(document.activeElement.tagName)){ e.preventDefault(); playing ? pause() : playFrom(cursor,true); }
   });
 
-  $("settingsHome").appendChild($("settings"));
+  $("settingsModal").appendChild($("settings"));
+  switchView("app");
   syncControls();
   if(!synth){ $("unsupported").hidden=false; }
   else { loadVoices(); if(typeof synth.onvoiceschanged!=="undefined") synth.onvoiceschanged=loadVoices; }
   updateCount();
+  /* Guia na primeira visita */
+  /* ---------- Tour de boas-vindas ---------- */
+  var STEPS=[
+    {k:"Bem-vinda",t:"Este é o Vox Vértice.",p:"Em menos de 1 minuto você aprende a gravar seus vídeos ouvindo o roteiro no fone, sem precisar decorar."},
+    {el:function(){return $("txt");},k:"Passo 1",t:"Cole seu roteiro.",p:"Escreva ou cole aqui o texto do seu vídeo. Ele fica salvo neste aparelho, mesmo se você fechar o app."},
+    {el:function(){return $("goBtn");},k:"Passo 2",t:"Coloque o fone e dê play.",p:"Você tem 3 segundos para se posicionar. Depois a voz lê frase por frase, e você repete com o seu tom. Errou? Toque na frase para recomeçar dali."},
+    {el:function(){return $("gearBtn");},k:"Passo 3",t:"Escolha a sua voz.",p:"Aqui você troca entre voz feminina e masculina, ajusta a velocidade, o respiro entre as frases e a contagem."},
+    {el:function(){return document.querySelector('#tabs button[data-v="feed"]');},k:"Passo 4",t:"Planeje o seu feed.",p:"Monte a grade do Instagram antes de postar: capa, legenda e roteiro de cada post. De lá, um toque leva o roteiro direto para gravar."},
+    {el:function(){return $("howTop");},k:"Último passo",t:"Ajuda sempre aqui.",p:"Em Como usar você revê este tour e aprende a deixar o Vox na tela inicial do celular, como um app.",last:true}
+  ];
+  var tIdx=0;
+  STEPS.forEach(function(){ $("tDots").appendChild(document.createElement("i")); });
+  function placeTour(){
+    var st=STEPS[tIdx], spot=$("tSpot"), tip=$("tTip"), el=st.el&&st.el();
+    var vw=innerWidth, vh=innerHeight, tw=tip.offsetWidth, th=tip.offsetHeight, m=16;
+    if(el && el.getClientRects().length){
+      var r=el.getBoundingClientRect(), pad=6;
+      if(r.top<70 && el.id==="txt" || r.bottom>vh-20){ el.scrollIntoView({block:"center"}); r=el.getBoundingClientRect(); }
+      spot.classList.remove("none");
+      spot.style.left=(r.left-pad)+"px"; spot.style.top=(r.top-pad)+"px"; spot.style.width=(r.width+pad*2)+"px"; spot.style.height=(r.height+pad*2)+"px";
+      var below=r.bottom+pad+14, above=r.top-pad-14-th, top;
+      if(below+th<vh-m) top=below; else if(above>m) top=above; else top=Math.max(m,Math.min(vh-th-m,r.top+r.height/2-th/2));
+      var left=Math.max(m,Math.min(vw-tw-m,r.left+r.width/2-tw/2));
+      tip.style.top=top+"px"; tip.style.left=left+"px";
+    } else {
+      spot.classList.add("none");
+      tip.style.top=Math.max(m,(vh-th)/2)+"px"; tip.style.left=Math.max(m,(vw-tw)/2)+"px";
+    }
+  }
+  function showStep(i){
+    tIdx=i; var st=STEPS[i];
+    $("tKick").textContent=st.k; $("tTitle").textContent=st.t; $("tText").textContent=st.p;
+    $("tBack").hidden=i===0; $("tSkip").hidden=!!st.last;
+    $("tNext").textContent=st.last?"Começar":(i===0?"Vamos lá":"Próximo");
+    [].forEach.call($("tDots").children,function(d,k){ d.classList.toggle("on",k===i); });
+    requestAnimationFrame(placeTour);
+    $("tNext").focus({preventScroll:true});
+  }
+  function startTour(){ closeDlg($("how")); closeDlg($("setDlg")); switchView("app"); toEdit(); txt.blur(); window.scrollTo(0,0); $("tour").hidden=false; showStep(0); }
+  function endTour(){ $("tour").hidden=true; store("vox-tour","1"); }
+  $("tNext").addEventListener("click",function(){ if(STEPS[tIdx].last) endTour(); else showStep(tIdx+1); });
+  $("tBack").addEventListener("click",function(){ if(tIdx>0) showStep(tIdx-1); });
+  $("tSkip").addEventListener("click",endTour);
+  $("tourAgain").addEventListener("click",startTour);
+  addEventListener("resize",function(){ if(!$("tour").hidden) placeTour(); });
+  document.addEventListener("keydown",function(e){ if($("tour").hidden) return; if(e.key==="Escape") endTour(); if(e.key==="ArrowRight") $("tNext").click(); if(e.key==="ArrowLeft") $("tBack").click(); });
+  if(load("vox-tour")!=="1"){ setTimeout(startTour,500); }
 })();
 </script>
 </body>
